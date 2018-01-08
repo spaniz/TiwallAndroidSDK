@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">TiwallSDK</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <string name="response_status">status</string>
+    <string name="response_ok">ok</string>
+    <string name="response_success">success</string>
+    <string name="response_error">error</string>
+    <string name="response_error_message">message</string>
+    <string name="response_error_code">code</string>
+    <string name="response_data">data</string>
+    <string name="response_meta">meta</string>
+
+
+    <string name="message_nodata">اطلاعاتی موجود نیست</string>
+    <string name="message_tryagain">دوباره تلاش کنید</string>
+    <string name="message_connetion_lost">ارتباط برقرار نشد</string>
+
+
+    <string name="version1">v1/</string>
+    <string name="version2">v2/</string>
 </resources>

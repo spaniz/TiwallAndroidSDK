@@ -1,16 +1,22 @@
 package com.nsun.tiwall.tiwallandroidsdk.Adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nsun.tiwall.tiwallandroidsdk.R;
+import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +54,7 @@ public class newsArrayAdapter extends ArrayAdapter<PageModel> {
     }
     public static class ViewHolder {
         public TextView title;
-        public TextView rootitr;
+        public ImageView img;
 
     }
 
@@ -61,7 +67,7 @@ public class newsArrayAdapter extends ArrayAdapter<PageModel> {
                 vi = inflater.inflate(R.layout.news_adapter, null);
                 holder = new ViewHolder();
                 holder.title = (TextView) vi.findViewById(R.id.title_id);
-                holder.rootitr = (TextView) vi.findViewById(R.id.rootitr_id);
+                holder.img = (ImageView) vi.findViewById(R.id.img);
 
 
                 vi.setTag(holder);
@@ -69,8 +75,8 @@ public class newsArrayAdapter extends ArrayAdapter<PageModel> {
                 holder = (ViewHolder) vi.getTag();
             }
 
-            holder.title.setText("tilte:" + newsArrayList.get(position).title);
-           // holder.rootitr.setText(newsArrayList.get(position).urn);
+            holder.title.setText( newsArrayList.get(position).title);
+            Picasso.with(context).load(newsArrayList.get(position).image.thumb_url).into(holder.img);
 
 
 
@@ -80,5 +86,6 @@ public class newsArrayAdapter extends ArrayAdapter<PageModel> {
         }
         return vi;
     }
+
 
 }

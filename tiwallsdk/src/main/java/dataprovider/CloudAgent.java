@@ -1,6 +1,7 @@
-package cloud;
+package dataprovider;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.nsun.tiwall.tiwallsdk.R;
 
@@ -8,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -15,7 +17,7 @@ import java.net.URLConnection;
  * Created by 110 on 07/01/2018.
  */
 
-public class cloudAgent extends AsyncTask <String, Void, String> {
+public class CloudAgent extends AsyncTask <String, Void, String> {
     public int timeout = R.integer.defaultTimeout;
 
     public interface TaskListener {
@@ -24,7 +26,7 @@ public class cloudAgent extends AsyncTask <String, Void, String> {
 
     private final TaskListener reqManagerTaskListener;
 
-    public cloudAgent(TaskListener reqManagerTaskListener) {
+    public CloudAgent(TaskListener reqManagerTaskListener) {
         this.reqManagerTaskListener = reqManagerTaskListener;
     }
 
@@ -32,9 +34,14 @@ public class cloudAgent extends AsyncTask <String, Void, String> {
     protected String doInBackground(String... strings) {
         try {
             URL getUrl = new URL(strings[0]);
-            URLConnection urlConnection = getUrl.openConnection();
+            HttpURLConnection urlConnection = (HttpURLConnection) getUrl.openConnection();
+            urlConnection.setRequestMethod(strings[1]);
+            //urlConnection.setRequestMethod(strings[0]);
+
+            //TODO
             urlConnection.setConnectTimeout(timeout);
             InputStream in = urlConnection.getInputStream();
+
 //        if (isCancelled()) break;
             return convertInputStreamToString(in);
         } catch (IOException e) {

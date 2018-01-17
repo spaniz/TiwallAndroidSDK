@@ -7,23 +7,24 @@ import java.util.Map;
  * Created by 110 on 07/01/2018.
  */
 
-public class AgentBase {
+public class BaseAgent {
     String scheme = "https://";
     String baseUrl = "api.tiwall.com/";
-    String versionName = "v1/";
+    //versionName = context.getResources().getString(R.string.version1);
+    String versionName = "v2/";
     String serviceName;
     String methodName;
 
     public String urlGenerator(HashMap<String, String> queryStringHashMap) {
-        String queryString = "";
+        StringBuilder queryStringSB = new StringBuilder("");
         if (queryStringHashMap != null && !queryStringHashMap.isEmpty()) {
-            queryString = "?" + queryString;
+            queryStringSB.append("?");
             for (Map.Entry<String, String> entry : queryStringHashMap.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
-                queryString = queryString + "&" + key + "=" + value;
+                queryStringSB.append("&").append(key).append("=").append(value);
             }
         }
-        return scheme + baseUrl + versionName + serviceName + methodName + queryString;
+        return new StringBuilder(scheme).append(baseUrl).append(versionName).append(serviceName).append(methodName).append(queryStringSB).toString();
     }
 }

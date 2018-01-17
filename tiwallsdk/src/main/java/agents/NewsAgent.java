@@ -10,16 +10,15 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-import cloud.cloudAgent;
-import data.RequestManager;
-import data.Response;
+import dataprovider.RequestManager;
+import dataprovider.Response;
 import models.News;
 
 /**
  * Created by 110 on 07/01/2018.
  */
 
-public class newsAgent extends AgentBase {
+public class NewsAgent extends BaseAgent {
 
 Context context;
 
@@ -28,7 +27,7 @@ Context context;
         public void onFinished(News news);
     }
     public TaskListener activityTaskListener;
-    public newsAgent(Context context , TaskListener activityTaskListener) {
+    public NewsAgent(Context context , TaskListener activityTaskListener) {
         serviceName = "news/";
         this.context = context;
         versionName = context.getResources().getString(R.string.version1);
@@ -52,8 +51,8 @@ Context context;
                     }
                 }
             }
-        }, versionName);
-        requestManager.invoke( url);
+        });
+        requestManager.invoke( url, RequestManager.ReqType.GET,false);
     }
 
 

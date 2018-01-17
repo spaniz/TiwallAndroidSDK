@@ -18,8 +18,10 @@ public class PaginationParams {
     }
     public HashMap<String, String> createHashMap() {
         HashMap<String, String> queryString = new HashMap<String, String>();
-        if(this.count != null) queryString.put("count", String.valueOf(this.count));
-        if(this.offset != null) queryString.put("offset", String.valueOf(this.offset));
+        if(this.count != null)
+            queryString.put("count", String.valueOf(this.count));
+        if(this.offset != null)
+            queryString.put("offset", String.valueOf(this.offset));
         return queryString;
     }
 }

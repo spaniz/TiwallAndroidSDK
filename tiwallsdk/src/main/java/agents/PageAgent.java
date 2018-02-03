@@ -48,8 +48,10 @@ public class PageAgent extends BaseAgent {
         listQueryString = new HashMap<>();
         listQueryString.putAll(paginationParams.createHashMap());
         listQueryString.putAll(pageListParams.createHashMap());
-        String url = urlGenerator(listQueryString);
 
+
+        String url = urlGenerator(listQueryString);
+        Log.i("urltets",url);
         RequestManager requestManager = new RequestManager(context, new RequestManager.TaskListener() {
             @Override
             public void onFinished(Response result) {

@@ -1,6 +1,7 @@
 package com.nsun.tiwall.tiwallandroidsdk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.nsun.tiwall.tiwallandroidsdk.Adapter.newsArrayAdapter;
 
 import java.util.ArrayList;
 
+import agents.CategoryAgent;
 import agents.PageAgent;
 import models.EventSpecModel;
 import models.PageModel;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), pageList.get(position).title, Toast.LENGTH_SHORT).show();
                         EventSpecModel test=  (EventSpecModel) pageList.get(position).spec;
                           Log.i("titleee", "title" + test.start_date );
+                          Intent intent=new Intent(MainActivity.this, CategoryActivity.class);
+                          startActivity(intent);
                     }
                 });
             }
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        pageAgent.get(new PaginationParams(20, 1), new PageListParams(1));
+        pageAgent.get(new PaginationParams(20, 1,120), new PageListParams(null,1,null,null,null,null,null));
         // pageAgents.get(new PageDetailParams(19529));
     }
     private void initView(){
